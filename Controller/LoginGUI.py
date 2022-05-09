@@ -18,7 +18,7 @@ class LoginGUI(QtWidgets.QDialog):
 
     def __init__(self):
         super(LoginGUI, self).__init__()
-        uic.loadUi('View/LoginScreen.ui', self)
+        uic.loadUi('../View/LoginScreen.ui', self)
 
         self.ExitPush.clicked.connect(self.Exit_button_pressed)
         self.LoginPush.clicked.connect(self.Login_button_pressed)

@@ -22,7 +22,7 @@ class TeacherRequestGUI(QtWidgets.QDialog):
 
     def __init__(self):  #
         super(TeacherRequestGUI, self).__init__()
-        uic.loadUi('GUI/Underviser_functionalGUI.ui', self)
+        uic.loadUi('../View/Underviser_functionalGUI.ui', self)
 
 # Forbinder knapperne med funktioner i python
         self.buttonBox.clicked.connect(self.ok_button_pressed)
