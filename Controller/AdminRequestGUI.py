@@ -1,15 +1,6 @@
 from PyQt6 import QtWidgets, uic
 from Model.lecture_class import lecture
-import mysql.connector
-
-mydb = mysql.connector.connect(
-    host="mysql-db.caprover.diplomportal.dk",
-    user="s206026",
-    password="oViFSGqnHflEFAA0ETNw1",
-    database="s206026")
-mycursor = mydb.cursor()
-mycursor.execute("SELECT * FROM admincheck")
-sqladmin = mycursor.fetchall()
+from Model.sqlconn_class import SQLconn
 
 
 class AdminRequestGUI(QtWidgets.QMainWindow):
@@ -33,6 +24,11 @@ class AdminRequestGUI(QtWidgets.QMainWindow):
         self.newleclist = []
         self.lecIndex = 0
 
+        # Oprettelse af databaseforbindelse
+        self.db = SQLconn()
+        self.db.mycursor.execute("SELECT * FROM admincheck")
+        sqladmin = self.db.mycursor.fetchall()
+
         # Loop der tager alle rækker i databasen over lektioner, og putter dem ind på en liste
         for lec in range(len(sqladmin)):
             self.leclist.append(
@@ -53,8 +49,8 @@ class AdminRequestGUI(QtWidgets.QMainWindow):
     def view_button_pressed(self):
         """Viser den originale lektion på en måde der kan sammenlignes med den nye"""
 
-        mycursor.execute("SELECT * FROM lectures")
-        sqllec = mycursor.fetchall()
+        self.db.mycursor.execute("SELECT * FROM lectures")
+        sqllec = self.db.mycursor.fetchall()
         originalList = []
 
         # Loop der skaber instances ud databasen over de originale lektioner
@@ -117,18 +113,18 @@ class AdminRequestGUI(QtWidgets.QMainWindow):
             print('Please choose a lecture to view')
         else:
             # Denne kode sletter lektionen fra admincheck databasen, ved at bruge reqID
-            mycursor.execute(f"DELETE FROM admincheck WHERE reqID={self.chosenLecture.reqid};")
-            mydb.commit()
+            self.db.mycursor.execute(f"DELETE FROM admincheck WHERE reqID={self.chosenLecture.reqid};")
+            self.db.mydb.commit()
 
             # Giver out-put i terminalen om det lykkedes eller ej med at slette
-            if mycursor.rowcount != 0:
-                print(mycursor.rowcount, "Request(s) Denied, entry is deleted from database")
+            if self.db.mycursor.rowcount != 0:
+                print(self.db.mycursor.rowcount, "Request(s) Denied, entry is deleted from database")
             else:
                 print("Invalid course chosen, something went wrong")
 
             # Opretter en fornyet liste over lektioner i admincheck efter den nylige sletning
-            mycursor.execute("SELECT * FROM admincheck")
-            newsqladmin = mycursor.fetchall()
+            self.db.mycursor.execute("SELECT * FROM admincheck")
+            newsqladmin = self.db.mycursor.fetchall()
 
             # Følgende kode og loop laver en opdateret udgave af lektionslisten og requestID listen fra __INIT__
             for nlec in range(len(newsqladmin)):
@@ -169,18 +165,18 @@ class AdminRequestGUI(QtWidgets.QMainWindow):
 
             # SQL update statement where CourseID = midlertidigvariabel.get_courseID
             update_sql = f"UPDATE lectures SET room = '{update_room}', date = '{update_date}', timefrom = '{update_timeFrom}', timeuntil = '{update_timeUntil}' WHERE courseID = '{update_courseID}'"
-            mycursor.execute(update_sql)
-            mydb.commit()
-            print(mycursor.rowcount, "Request accepted, database is updated")
+            self.db.mycursor.execute(update_sql)
+            self.db.mydb.commit()
+            print(self.db.mycursor.rowcount, "Request accepted, database is updated")
 
             # Copy-Paste fra DENY for at slette og opdatere ting i GUI
             # Denne kode sletter lektionen fra admincheck databasen, ved at bruge reqID
-            mycursor.execute(f"DELETE FROM admincheck WHERE reqID={self.chosenLecture.reqid};")
-            mydb.commit()
+            self.db.mycursor.execute(f"DELETE FROM admincheck WHERE reqID={self.chosenLecture.reqid};")
+            self.db.mydb.commit()
 
             # Opretter en fornyet liste over lektioner i admincheck efter den nylige sletning
-            mycursor.execute("SELECT * FROM admincheck")
-            newsqladmin = mycursor.fetchall()
+            self.db.mycursor.execute("SELECT * FROM admincheck")
+            newsqladmin = self.db.mycursor.fetchall()
 
             # Følgende kode og loop laver en opdateret udgave af lektionslisten og requestID listen fra __INIT__
             for nlec in range(len(newsqladmin)):
