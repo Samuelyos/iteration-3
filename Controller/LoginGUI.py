@@ -29,8 +29,11 @@ class LoginGUI(QtWidgets.QDialog):
 
         self.written_username = self.usernameLabel.text()
         self.written_password = self.passwordLabel.text()
+        valid_ids = []
+        for users in Login.all_users:
+            valid_ids.append(users.get_userID())
 
-        if len(self.written_username) == 6:
+        if self.written_username in valid_ids:
             for user in Login.all_users:
                 if self.written_username == user.get_userID() and self.written_password == user.get_password():
                     self.currentUser = user

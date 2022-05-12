@@ -17,7 +17,7 @@ class AdminRequestGUI(QtWidgets.QMainWindow):
 
     def __init__(self):  #
         super(AdminRequestGUI, self).__init__()
-        uic.loadUi('../View/LoginScreen.ui', self)
+        uic.loadUi('../View/Admin_functionalGUI.ui', self)
 
         # Her defineres mange af de variable der bliver brugt senere i koden
         self.donePushButton.clicked.connect(self.done_push_button_pressed)
