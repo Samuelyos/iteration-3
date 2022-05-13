@@ -9,7 +9,7 @@ from Model.person_class import Person
 ##
 hugo = Courseleader('Hugo', 'Test', 'abc123')
 hugo_login = Login(hugo, 'password')
-Person('Ole', 'Svendsen', 'aaa555','admin')
+a = Person('Ole', 'Svendsen', 'aaa555','admin')
 henrik = Admin('Henrik', 'Hansen', 'zyx999')
 henrik_login = Login(henrik, 'password')
 ##
