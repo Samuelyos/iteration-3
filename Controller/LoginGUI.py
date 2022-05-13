@@ -4,11 +4,12 @@ from TeacherRequestGUI import TeacherRequestGUI
 from Model.login_class import Login
 from Model.courseleader_class import Courseleader
 from Model.admin_class import Admin
+from Model.person_class import Person
 
 ##
 hugo = Courseleader('Hugo', 'Test', 'abc123')
 hugo_login = Login(hugo, 'password')
-
+Person('Ole', 'Svendsen', 'aaa555','admin')
 henrik = Admin('Henrik', 'Hansen', 'zyx999')
 henrik_login = Login(henrik, 'password')
 ##

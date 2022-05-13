@@ -1,4 +1,7 @@
-class Admin:
+from person_class import Person
+
+
+class Admin(Person):
     """Info om ansette kursusledere"""
     def __init__(self, name, lastname, employeeID):
         self.__name = name
