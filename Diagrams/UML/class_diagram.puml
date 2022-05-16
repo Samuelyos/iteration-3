@@ -1,0 +1,99 @@
+@startuml
+
+interface sKUma{
+    DatabaseData:
+    UserAccounts:
+    --
+    SendDatabaseRequest():
+    EditLecture():
+    ChangePassword(old,new): boolean
+}
+
+class Student{
+    Student ID = Person(ID)
+    TA: boolean
+    CourseList: str
+    Education: str
+    --
+    sKUma.ViewSelf():
+    }
+
+abstract class Person{
+Firstname: str
+Lastname: str
+ID: str
+}
+
+class CourseLeader{
+    Guest: str
+    CourseList:
+    Employee ID = Person(ID)
+    --
+    sKUma.RequestEdit():
+    sKUma.ViewSelf():
+}
+
+class Admin{
+    Employee ID = Person(ID)
+    --
+    sKUma.Edit():
+    sKUma.ViewAll():
+    sKUma.ConfirmEdit():
+    sKUma.AddStudent(studentID):
+    sKUma.AddEmployee(employeeID):
+    sKUma.AddMin(employeeID):
+}
+
+class StudentCounsellor{
+    Employee ID = Person(ID)
+    --
+    sKUma.View():
+    sKUma.ViewAll():
+}
+
+
+class Course {
+    TimeSlot:
+    Zoom: Boolean
+    Course: CourseLeader.CourseList
+    Students:
+    --
+    AddStudents(
+      .  if Course = Student.courseList
+      .  append Student)
+    }
+
+
+class Database{
+    LectureData:
+    StudentData:
+    EmployeeData:
+    ClassRoomData:
+    --
+    BookLecture(Date): Boolean
+    DeleteBooking(Date): Boolean
+    SaveLectureData():
+    }
+
+class Room{
+Building: str
+Floor: int
+RoomNr: int
+PeopleCapacity: int
+Equipment: list
+}
+
+Person <|-- Admin
+Person <|-- CourseLeader
+Person <|-- Student
+Person <|-- StudentCounsellor
+Room  "1..1" -- "1..*" Database
+Course "1" - "1…*" CourseLeader
+Admin -- Database
+sKUma -- Database
+sKUma -- Person
+Database "1…*" .. "1" Course
+
+@enduml
+
+
