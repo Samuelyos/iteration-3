@@ -124,14 +124,14 @@ class AdminRequestGUI(QtWidgets.QMainWindow):
 
             # Opretter en fornyet liste over lektioner i admincheck efter den nylige sletning
             self.db.mycursor.execute("SELECT * FROM admincheck")
-            newsqladmin = self.db.mycursor.fetchall()
+            newDatabaseAdmin = self.db.mycursor.fetchall()
 
             # Følgende kode og loop laver en opdateret udgave af lektionslisten og requestID listen fra __INIT__
-            for nlec in range(len(newsqladmin)):
+            for newLecture in range(len(newDatabaseAdmin)):
                 self.newLectureList.append(
-                    lecture(newsqladmin[nlec][0], newsqladmin[nlec][1], newsqladmin[nlec][2], newsqladmin[nlec][3],
-                            newsqladmin[nlec][4], newsqladmin[nlec][5]))
-                self.newRequestList.append(newsqladmin[nlec][7])
+                    lecture(newDatabaseAdmin[newLecture][0], newDatabaseAdmin[newLecture][1], newDatabaseAdmin[newLecture][2], newDatabaseAdmin[newLecture][3],
+                            newDatabaseAdmin[newLecture][4], newDatabaseAdmin[newLecture][5]))
+                self.newRequestList.append(newDatabaseAdmin[newLecture][7])
 
             # Sletter alt indhold på rullelisten, og udskifter med den nye opdaterede liste
             self.comboLect.clear()
@@ -142,10 +142,10 @@ class AdminRequestGUI(QtWidgets.QMainWindow):
             # Tømmer den nye liste efter GUI integration, for irrelevant data ikke bliver lagret til næste brug af "Deny"
             # Printer i terminalen hvor mange requests der er tilbage i databasen, og sletter derefter listen over
             # info i databasen, ingen for at undgå lagring af irrelevant info.
-            print(len(newsqladmin), "requests are left")
+            print(len(newDatabaseAdmin), "requests are left")
             self.newLectureList.clear()
             self.newRequestList.clear()
-            del newsqladmin
+            del newDatabaseAdmin
             self.clearlabels()
 
     def accept_button_pressed(self):
@@ -176,14 +176,14 @@ class AdminRequestGUI(QtWidgets.QMainWindow):
 
             # Opretter en fornyet liste over lektioner i admincheck efter den nylige sletning
             self.db.mycursor.execute("SELECT * FROM admincheck")
-            newsqladmin = self.db.mycursor.fetchall()
+            newDatabaseAdmin = self.db.mycursor.fetchall()
 
             # Følgende kode og loop laver en opdateret udgave af lektionslisten og requestID listen fra __INIT__
-            for nlec in range(len(newsqladmin)):
+            for newLecture in range(len(newDatabaseAdmin)):
                 self.newLectureList.append(
-                    lecture(newsqladmin[nlec][0], newsqladmin[nlec][1], newsqladmin[nlec][2], newsqladmin[nlec][3],
-                            newsqladmin[nlec][4], newsqladmin[nlec][5]))
-                self.newRequestList.append(newsqladmin[nlec][7])
+                    lecture(newDatabaseAdmin[newLecture][0], newDatabaseAdmin[newLecture][1], newDatabaseAdmin[newLecture][2], newDatabaseAdmin[newLecture][3],
+                            newDatabaseAdmin[newLecture][4], newDatabaseAdmin[newLecture][5]))
+                self.newRequestList.append(newDatabaseAdmin[newLecture][7])
 
             # Sletter alt indhold på rullelisten, og udskifter med den nye opdaterede liste
             self.comboLect.clear()
@@ -194,10 +194,10 @@ class AdminRequestGUI(QtWidgets.QMainWindow):
             # Tømmer den nye liste efter GUI integration, for irrelevant data ikke bliver lagret til næste brug af "Deny"
             # Printer i terminalen hvor mange requests der er tilbage i databasen, og sletter derefter listen over
             # info i databasen, ingen for at undgå lagring af irrelevant info.
-            print(len(newsqladmin), "requests are left")
+            print(len(newDatabaseAdmin), "requests are left")
             self.newLectureList.clear()
             self.newRequestList.clear()
-            del newsqladmin
+            del newDatabaseAdmin
             self.clearlabels()
 
     def done_push_button_pressed(self):

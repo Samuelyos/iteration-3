@@ -36,7 +36,3 @@ class classroom:
     # Hvordan vores objekter bliver repræsenteret som string.
     def __str__(self):
         return f"{self.__roomID}\nat {self.__address}"
-
-lokale1 = classroom('HCØ', 2, '103A',22, 'Universitetsparken 1')
-
-print(lokale1)

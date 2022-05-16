@@ -71,8 +71,8 @@ class TeacherRequestGUI(QtWidgets.QDialog):
 
         # Hvis der er en lektion importeret, bliver denne tilføjet til admincheck tabellen i databasen
         else:
-            ins_sql = f"INSERT INTO admincheck (courseID, course, room, `date`, timefrom, timeuntil) VALUES ('{courseID}','{course}', '{room}', '{dateGUI}',\
+            insertStatement = f"INSERT INTO admincheck (courseID, course, room, `date`, timefrom, timeuntil) VALUES ('{courseID}','{course}', '{room}', '{dateGUI}',\
                     '{GUItimeStart}', '{GUItimeEnd}')"
-            self.db.mycursor.execute(ins_sql)
-            self.db.commit()
+            self.db.mycursor.execute(insertStatement)
+            self.db.mydb.commit()
             print(self.db.mycursor.rowcount, "record inserted.")
