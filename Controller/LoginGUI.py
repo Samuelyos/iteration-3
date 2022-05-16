@@ -2,13 +2,6 @@ from PyQt6 import QtWidgets, uic
 from Controller.AdminRequestGUI import AdminRequestGUI
 from Controller.TeacherRequestGUI import TeacherRequestGUI
 from Model.login_class import Login
-from Model.courseleader_class import Courseleader
-from Model.admin_class import Admin
-
-##
-hugo_login = Login(Courseleader('Hugo', 'Test', 'abc123'), 'password')
-henrik_login = Login(Admin('Henrik', 'Hansen', 'zyx999'), 'password')
-##
 
 class LoginGUI(QtWidgets.QDialog):
     """Klasse for selve ændring af lektioner GUI"""
@@ -58,7 +51,6 @@ class LoginGUI(QtWidgets.QDialog):
                 temp_label = self.wrongLabel.text()
                 temp_label = temp_label + '...'
                 self.wrongLabel.setText(temp_label)
-
 
     def Exit_button_pressed(self):
         self.close()

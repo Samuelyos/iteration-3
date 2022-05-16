@@ -1,6 +1,7 @@
 class Course:
     """Klasse for hele kurser"""
     all_list = []
+
     def __init__(self, courseName, courseLeader, faculty):
         self.__courseName = courseName
         self.__courseLeader = courseLeader

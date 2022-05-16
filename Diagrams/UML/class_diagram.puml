@@ -15,14 +15,48 @@ class Student{
     CourseList: str
     Education: str
     --
-    sKUma.ViewSelf():
+    sKUma.ViewSchedule():
     }
 
 abstract class Person{
 Firstname: str
 Lastname: str
 ID: str
+__
+Skuma.login()
 }
+
+class Admin{
+    Employee ID = Person(ID)
+    --
+    sKUma.EditDatabase():
+    sKUma.ViewAllSchedules():
+    sKUma.ConfirmRequests():
+}
+
+class StudentCounsellor{
+    Employee ID = Person(ID)
+    --
+    sKUma.ViewAllSchedules():
+}
+
+
+class Lecture {
+    CourseType:
+    Title: coursename + coursetype
+    TimeSlot:
+    Zoom: Boolean
+    --
+    }
+
+class Course {
+   CourseName:
+   StudentList:
+   ETCS: int
+   Skemagruppe:
+   Fakultet:
+   --
+   }
 
 class CourseLeader{
     Guest: str
@@ -30,39 +64,8 @@ class CourseLeader{
     Employee ID = Person(ID)
     --
     sKUma.RequestEdit():
-    sKUma.ViewSelf():
+    sKUma.ViewSchedule():
 }
-
-class Admin{
-    Employee ID = Person(ID)
-    --
-    sKUma.Edit():
-    sKUma.ViewAll():
-    sKUma.ConfirmEdit():
-    sKUma.AddStudent(studentID):
-    sKUma.AddEmployee(employeeID):
-    sKUma.AddMin(employeeID):
-}
-
-class StudentCounsellor{
-    Employee ID = Person(ID)
-    --
-    sKUma.View():
-    sKUma.ViewAll():
-}
-
-
-class Course {
-    TimeSlot:
-    Zoom: Boolean
-    Course: CourseLeader.CourseList
-    Students:
-    --
-    AddStudents(
-      .  if Course = Student.courseList
-      .  append Student)
-    }
-
 
 class Database{
     LectureData:
@@ -70,9 +73,9 @@ class Database{
     EmployeeData:
     ClassRoomData:
     --
-    BookLecture(Date): Boolean
-    DeleteBooking(Date): Boolean
-    SaveLectureData():
+    RecreateTables():
+    SelectCourses():
+    UpdateCourses():
     }
 
 class Room{
@@ -83,17 +86,25 @@ PeopleCapacity: int
 Equipment: list
 }
 
+class Login{
+Username:
+Passwword:
+Role = Person.Class
+}
+
+Room  "1..1" -- "1..*" Database
+CourseLeader -- Course
+Course -- Lecture
+Room - Lecture
+sKUma -- Database
+sKUma -- Person
+Database "1…*" ... "1" Lecture
+Student - Course
 Person <|-- Admin
 Person <|-- CourseLeader
 Person <|-- Student
-Person <|-- StudentCounsellor
-Room  "1..1" -- "1..*" Database
-Course "1" - "1…*" CourseLeader
-Admin -- Database
-sKUma -- Database
-sKUma -- Person
-Database "1…*" .. "1" Course
-
+Person <|- StudentCounsellor
+Login "1..1" -- "1..*" Database
 @enduml
 
 

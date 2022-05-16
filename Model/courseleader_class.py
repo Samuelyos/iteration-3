@@ -3,7 +3,6 @@ from Model.person_class import Person
 class Courseleader(Person):
     """Info om ansette kursusledere"""
     def __init__(self, name, lastname, employeeID):
-        super().__init__(name, lastname, employeeID)
         self.__name = name
         self.__lastname = lastname
         self.__employeeID = employeeID

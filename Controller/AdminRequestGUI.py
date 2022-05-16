@@ -18,33 +18,33 @@ class AdminRequestGUI(QtWidgets.QMainWindow):
         self.clearPush.clicked.connect(self.clear_button_pressed)
         self.show()
         self.chosenLecture = None
-        self.reqlist = []
-        self.newreqlist = []
-        self.leclist = []
-        self.newleclist = []
-        self.lecIndex = 0
+        self.requestList = []
+        self.newRequestList = []
+        self.lectureList = []
+        self.newLectureList = []
+        self.lectureIndex = 0
 
         # Oprettelse af databaseforbindelse
         self.db = SQLconn()
         self.db.mycursor.execute("SELECT * FROM admincheck")
-        sqladmin = self.db.mycursor.fetchall()
+        databaseAdmin = self.db.mycursor.fetchall()
 
         # Loop der tager alle rækker i databasen over lektioner, og putter dem ind på en liste
-        for lec in range(len(sqladmin)):
-            self.leclist.append(
-                lecture(sqladmin[lec][0], sqladmin[lec][1], sqladmin[lec][2], sqladmin[lec][3], sqladmin[lec][4],
-                        sqladmin[lec][5]))
-            self.reqlist.append(sqladmin[lec][7])
+        for lec in range(len(databaseAdmin)):
+            self.lectureList.append(
+                lecture(databaseAdmin[lec][0], databaseAdmin[lec][1], databaseAdmin[lec][2], databaseAdmin[lec][3], databaseAdmin[lec][4],
+                        databaseAdmin[lec][5]))
+            self.requestList.append(databaseAdmin[lec][7])
 
-        # Giver de requestede lektioner en midlertidig attribut fra databasens reqID
-        for lec in range(len(self.leclist)):
-            self.leclist[lec].reqid = self.reqlist[lec]
+        # Giver de requestede lektioner en midlertidig attribut fra databasens requestID
+        for lec in range(len(self.lectureList)):
+            self.lectureList[lec].requestID = self.requestList[lec]
 
         # Loop der laver en liste over alle requests fra admincheck databasen, og giver dem et midliertidigt requestID
-        lecNum = 0
-        for lect in self.leclist:
-            self.comboLect.addItem(f'{lect.reqid}: {lect.get_course()}, {lect.get_courseID()}')
-            lecNum += 1
+        lectureNumber = 0
+        for lect in self.lectureList:
+            self.comboLect.addItem(f'{lect.requestID}: {lect.get_course()}, {lect.get_courseID()}')
+            lectureNumber += 1
 
     def view_button_pressed(self):
         """Viser den originale lektion på en måde der kan sammenlignes med den nye"""
@@ -60,12 +60,12 @@ class AdminRequestGUI(QtWidgets.QMainWindow):
 
         # LecIndex is the index of the lecture request of the chosen lecture
         chosenRequest = self.comboLect.currentText()
-        self.lecIndex = int(chosenRequest[0:3])
+        self.lectureIndex = int(chosenRequest[0:3])
 
-        # Loop der matcher reqID tekst fra GUI med  reqID fra databasen
-        for i in range(len(self.leclist)):
-            if self.lecIndex == self.leclist[i].reqid:
-                self.chosenLecture = self.leclist[i]
+        # Loop der matcher requestID tekst fra GUI med  requestID fra databasen
+        for i in range(len(self.lectureList)):
+            if self.lectureIndex == self.lectureList[i].requestID:
+                self.chosenLecture = self.lectureList[i]
 
         # Loop der sørger for at finde den originale lektion from, ud fra kursusID
         chosenOriginal = None
@@ -79,7 +79,7 @@ class AdminRequestGUI(QtWidgets.QMainWindow):
         self.labDate_2.setText(f'{self.chosenLecture.get_date()}')
         self.labFrom_2.setText(f'{self.chosenLecture.get_time_from()}')
         self.labUntil_2.setText(f'{self.chosenLecture.get_time_until()}')
-        self.labName.setText(f'{self.chosenLecture.reqid}')
+        self.labName.setText(f'{self.chosenLecture.requestID}')
         self.labRoom.setText(f'{chosenOriginal.get_room()}')
         self.labDate.setText(f'{chosenOriginal.get_date()}')
         self.labFrom.setText(f'{chosenOriginal.get_time_from()}')
@@ -112,8 +112,8 @@ class AdminRequestGUI(QtWidgets.QMainWindow):
         if self.labName_2.text() == '':
             print('Please choose a lecture to view')
         else:
-            # Denne kode sletter lektionen fra admincheck databasen, ved at bruge reqID
-            self.db.mycursor.execute(f"DELETE FROM admincheck WHERE reqID={self.chosenLecture.reqid};")
+            # Denne kode sletter lektionen fra admincheck databasen, ved at bruge requestID
+            self.db.mycursor.execute(f"DELETE FROM admincheck WHERE reqID={self.chosenLecture.requestID};")
             self.db.mydb.commit()
 
             # Giver out-put i terminalen om det lykkedes eller ej med at slette
@@ -128,23 +128,23 @@ class AdminRequestGUI(QtWidgets.QMainWindow):
 
             # Følgende kode og loop laver en opdateret udgave af lektionslisten og requestID listen fra __INIT__
             for nlec in range(len(newsqladmin)):
-                self.newleclist.append(
+                self.newLectureList.append(
                     lecture(newsqladmin[nlec][0], newsqladmin[nlec][1], newsqladmin[nlec][2], newsqladmin[nlec][3],
                             newsqladmin[nlec][4], newsqladmin[nlec][5]))
-                self.newreqlist.append(newsqladmin[nlec][7])
+                self.newRequestList.append(newsqladmin[nlec][7])
 
             # Sletter alt indhold på rullelisten, og udskifter med den nye opdaterede liste
             self.comboLect.clear()
-            for i in range(len(self.newleclist)):
+            for i in range(len(self.newLectureList)):
                 self.comboLect.addItem(
-                    f'{self.newreqlist[i]}: {self.newleclist[i].get_course()}, {self.newleclist[i].get_courseID()}')
+                    f'{self.newRequestList[i]}: {self.newLectureList[i].get_course()}, {self.newLectureList[i].get_courseID()}')
 
             # Tømmer den nye liste efter GUI integration, for irrelevant data ikke bliver lagret til næste brug af "Deny"
             # Printer i terminalen hvor mange requests der er tilbage i databasen, og sletter derefter listen over
             # info i databasen, ingen for at undgå lagring af irrelevant info.
             print(len(newsqladmin), "requests are left")
-            self.newleclist.clear()
-            self.newreqlist.clear()
+            self.newLectureList.clear()
+            self.newRequestList.clear()
             del newsqladmin
             self.clearlabels()
 
@@ -170,8 +170,8 @@ class AdminRequestGUI(QtWidgets.QMainWindow):
             print(self.db.mycursor.rowcount, "Request accepted, database is updated")
 
             # Copy-Paste fra DENY for at slette og opdatere ting i GUI
-            # Denne kode sletter lektionen fra admincheck databasen, ved at bruge reqID
-            self.db.mycursor.execute(f"DELETE FROM admincheck WHERE reqID={self.chosenLecture.reqid};")
+            # Denne kode sletter lektionen fra admincheck databasen, ved at bruge requestID
+            self.db.mycursor.execute(f"DELETE FROM admincheck WHERE reqID={self.chosenLecture.requestID};")
             self.db.mydb.commit()
 
             # Opretter en fornyet liste over lektioner i admincheck efter den nylige sletning
@@ -180,23 +180,23 @@ class AdminRequestGUI(QtWidgets.QMainWindow):
 
             # Følgende kode og loop laver en opdateret udgave af lektionslisten og requestID listen fra __INIT__
             for nlec in range(len(newsqladmin)):
-                self.newleclist.append(
+                self.newLectureList.append(
                     lecture(newsqladmin[nlec][0], newsqladmin[nlec][1], newsqladmin[nlec][2], newsqladmin[nlec][3],
                             newsqladmin[nlec][4], newsqladmin[nlec][5]))
-                self.newreqlist.append(newsqladmin[nlec][7])
+                self.newRequestList.append(newsqladmin[nlec][7])
 
             # Sletter alt indhold på rullelisten, og udskifter med den nye opdaterede liste
             self.comboLect.clear()
-            for i in range(len(self.newleclist)):
+            for i in range(len(self.newLectureList)):
                 self.comboLect.addItem(
-                    f'{self.newreqlist[i]}: {self.newleclist[i].get_course()}, {self.newleclist[i].get_courseID()}')
+                    f'{self.newRequestList[i]}: {self.newLectureList[i].get_course()}, {self.newLectureList[i].get_courseID()}')
 
             # Tømmer den nye liste efter GUI integration, for irrelevant data ikke bliver lagret til næste brug af "Deny"
             # Printer i terminalen hvor mange requests der er tilbage i databasen, og sletter derefter listen over
             # info i databasen, ingen for at undgå lagring af irrelevant info.
             print(len(newsqladmin), "requests are left")
-            self.newleclist.clear()
-            self.newreqlist.clear()
+            self.newLectureList.clear()
+            self.newRequestList.clear()
             del newsqladmin
             self.clearlabels()
 

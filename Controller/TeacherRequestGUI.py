@@ -1,21 +1,8 @@
 from PyQt6 import QtWidgets, uic
 from Model.lecture_class import lecture
-import mysql.connector
-
-mydb = mysql.connector.connect(
-    host="mysql-db.caprover.diplomportal.dk",
-    user="s206026",
-    password="oViFSGqnHflEFAA0ETNw1",
-    database="s206026")
-mycursor = mydb.cursor()
-mycursor.execute("SELECT * FROM lectures")
-sqllec = mycursor.fetchall()
+from Model.sqlconn_class import SQLconn
 
 # Loop der tager alle rækker i databasen over lektioner, og putter dem ind på en liste
-leclist = []
-for lec in range(len(sqllec)):
-    leclist.append(lecture(sqllec[lec][0], sqllec[lec][1], sqllec[lec][2], sqllec[lec][3], sqllec[lec][4], sqllec[lec][5]))
-
 
 class TeacherRequestGUI(QtWidgets.QDialog):
     """Klasse for selve ændring af lektioner GUI"""
@@ -29,9 +16,18 @@ class TeacherRequestGUI(QtWidgets.QDialog):
         self.pushButton.clicked.connect(self.push_button_pressed)
         self.addPush.clicked.connect(self.addPush_pressed)
 
-# Kort loop der tilføjer et item i dropdown menuen, for hvert item i listen over lektioner
-        for i in range(len(leclist)):
-            self.comboBox.addItem(leclist[i].get_course())
+        self.db = SQLconn()
+        self.db.mycursor.execute("SELECT * FROM lectures")
+        self.databaseLectures = self.db.mycursor.fetchall()
+
+        self.lectureList = []
+        for lec in range(len(self.databaseLectures)):
+            self.lectureList.append(
+                lecture(self.databaseLectures[lec][0], self.databaseLectures[lec][1], self.databaseLectures[lec][2], self.databaseLectures[lec][3], self.databaseLectures[lec][4], self.databaseLectures[lec][5]))
+
+        # Kort loop der tilføjer et item i dropdown menuen, for hvert item i listen over lektioner
+        for i in range(len(self.lectureList)):
+            self.comboBox.addItem(self.lectureList[i].get_course())
         self.show()
 
     def push_button_pressed(self):
@@ -42,9 +38,9 @@ class TeacherRequestGUI(QtWidgets.QDialog):
         # chosenLect er en midlertidig variabel, der statisk opdaterer variablen oldLecture, afhængigt af hvad du vælger i
         # dropdown-menuen ved siden af import
         oldLecture = None
-        for i in range(len(leclist)):
-            if chosenLect == leclist[i].get_course():
-                oldLecture = leclist[i]
+        for i in range(len(self.lectureList)):
+            if chosenLect == self.lectureList[i].get_course():
+                oldLecture = self.lectureList[i]
 
         # Når man trykker på import bliver diverse labels udfyldt automatisk
         self.roomLabelOld.setText(f'{oldLecture.get_room()}')
@@ -77,6 +73,6 @@ class TeacherRequestGUI(QtWidgets.QDialog):
         else:
             ins_sql = f"INSERT INTO admincheck (courseID, course, room, `date`, timefrom, timeuntil) VALUES ('{courseID}','{course}', '{room}', '{dateGUI}',\
                     '{GUItimeStart}', '{GUItimeEnd}')"
-            mycursor.execute(ins_sql)
-            mydb.commit()
-            print(mycursor.rowcount, "record inserted.")
+            self.db.mycursor.execute(ins_sql)
+            self.db.commit()
+            print(self.db.mycursor.rowcount, "record inserted.")
