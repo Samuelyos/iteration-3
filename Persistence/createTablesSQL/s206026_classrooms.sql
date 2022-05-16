@@ -24,10 +24,10 @@ DROP TABLE IF EXISTS `classrooms`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `classrooms` (
   `building` varchar(25) DEFAULT NULL,
-  `floor` varchar(5) DEFAULT NULL,
-  `roomNr` varchar(6) DEFAULT NULL,
+  `floor` varchar(10) DEFAULT NULL,
+  `roomNr` varchar(14) DEFAULT NULL,
   `capacity` int DEFAULT NULL,
-  `address` varchar(30) DEFAULT NULL
+  `address` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -37,6 +37,7 @@ CREATE TABLE `classrooms` (
 
 LOCK TABLES `classrooms` WRITE;
 /*!40000 ALTER TABLE `classrooms` DISABLE KEYS */;
+INSERT INTO `classrooms` VALUES ('Panum','1.','Einer',420,'Blegdamsvej 3B, 2200 KÃ¸benhavn'),('Panum','-1','31.35.2',30,'Blegdamsvej 3B, 2200 KÃ¸benhavn'),('HCÃ˜','1','A106',25,'Universitetsparken 5, 2100 KÃ¸benhavn'),('HCÃ˜','1','A111',25,'Universitetsparken 5, 2100 KÃ¸benhavn'),('HCÃ˜','1','A104',25,'Universitetsparken 5, 2100 KÃ¸benhavn');
 /*!40000 ALTER TABLE `classrooms` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-12  9:22:09
+-- Dump completed on 2022-05-14 10:10:20

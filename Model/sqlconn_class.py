@@ -14,13 +14,13 @@ class SQLconn:
 
     def create_tables(self, filename):
         """Opretter alle de nødvendige tabeller for at eksekvere Use Case, via eksterne SQL - scripts"""
-        # Open and read the file as a single buffer
+        # Læs og gem SQL script fra kommando til kommando, ved at splitte ved semikolon
         temptable = open(filename, 'r')
         sqlFile = temptable.read()
         temptable.close()
         sqlCommands = sqlFile.split(';')
 
-        # Execute every command from the input file
+        # Loop der eksekvere hver kommando, for at oprette en given tabel
         for command in sqlCommands:
             self.mycursor.execute(command)
 
@@ -35,5 +35,5 @@ class SQLconn:
         print('All tables created')
 
 
-db = SQLconn()
-db.create_all_tables()
+#db = SQLconn()
+#db.create_all_tables()

@@ -1,17 +1,13 @@
 from PyQt6 import QtWidgets, uic
-from AdminRequestGUI import AdminRequestGUI
-from TeacherRequestGUI import TeacherRequestGUI
+from Controller.AdminRequestGUI import AdminRequestGUI
+from Controller.TeacherRequestGUI import TeacherRequestGUI
 from Model.login_class import Login
 from Model.courseleader_class import Courseleader
 from Model.admin_class import Admin
-from Model.person_class import Person
 
 ##
-hugo = Courseleader('Hugo', 'Test', 'abc123')
-hugo_login = Login(hugo, 'password')
-a = Person('Ole', 'Svendsen', 'aaa555','admin')
-henrik = Admin('Henrik', 'Hansen', 'zyx999')
-henrik_login = Login(henrik, 'password')
+hugo_login = Login(Courseleader('Hugo', 'Test', 'abc123'), 'password')
+henrik_login = Login(Admin('Henrik', 'Hansen', 'zyx999'), 'password')
 ##
 
 class LoginGUI(QtWidgets.QDialog):
