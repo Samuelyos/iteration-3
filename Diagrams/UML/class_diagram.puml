@@ -1,9 +1,11 @@
 @startuml
 
 interface sKUma{
-    DatabaseData:
-    UserAccounts:
+    LoginGUI:
+    AdminGUI:
+    CourseLeaderGUI:
     --
+    PullDatabaseData():
     SendDatabaseRequest():
     EditLecture():
     ChangePassword(old,new): boolean
@@ -72,6 +74,7 @@ class Database{
     StudentData:
     EmployeeData:
     ClassRoomData:
+    LoginData:
     --
     RecreateTables():
     SelectCourses():
@@ -88,13 +91,15 @@ Equipment: list
 
 class Login{
 Username:
-Passwword:
+Password:
 Role = Person.Class
+__
+ConfirmLogin():boolean
 }
 
-Room  "1..1" -- "1..*" Database
-CourseLeader -- Course
-Course -- Lecture
+Room  "1..1" .. "1..*" Database
+CourseLeader "1…*" -- "1…1" Course
+Course "1…*" -- "1…1" Lecture
 Room - Lecture
 sKUma -- Database
 sKUma -- Person
@@ -104,7 +109,8 @@ Person <|-- Admin
 Person <|-- CourseLeader
 Person <|-- Student
 Person <|- StudentCounsellor
-Login "1..1" -- "1..*" Database
+Login -- Database
+Login - Person
 @enduml
 
 
