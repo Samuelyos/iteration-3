@@ -171,23 +171,6 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `s206026`.`Preference`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `s206026`.`Preference` (
-  `preferenceId` INT NOT NULL AUTO_INCREMENT,
-  `TidStart` TIME NOT NULL,
-  `LokationType` VARCHAR(45) NOT NULL,
-  `Ugedag` VARCHAR(45) NOT NULL,
-  `TidSlut` VARCHAR(45) NOT NULL,
-  `Forespørgsel` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`preferenceId`))
-ENGINE = InnoDB
-AUTO_INCREMENT = 2
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-
--- -----------------------------------------------------
 -- Table `s206026`.`admincheck`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `s206026`.`admincheck` (
