@@ -1,6 +1,4 @@
-CREATE DATABASE  IF NOT EXISTS `s206026` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `s206026`;
--- MySQL dump 10.13  Distrib 8.0.28, for macos11 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
 --
 -- Host: mysql-db.caprover.diplomportal.dk    Database: s206026
 -- ------------------------------------------------------
@@ -40,7 +38,7 @@ CREATE TABLE `Persons` (
 
 LOCK TABLES `Persons` WRITE;
 /*!40000 ALTER TABLE `Persons` DISABLE KEYS */;
-INSERT INTO `Persons` VALUES ('Hugo','Test','abc123','courseleader',1),('Henrik','Hansen','zyx999','admin',2),('Lars','Kingo','bln090','courseleader',3),('Oluf','Måne','lun031','courseleader',4),('Ulrikke','Viggosen','sol501','courseleader',5),('Vera','Qwist','ida246','admin',6),('Henriette','Farma','ooo000','courseleader',7);
+INSERT INTO `Persons` VALUES ('Hugo','Test','abc123','courseleader',1),('Henrik','Hansen','zyx999','admin',2),('Lars','Kingo','bln090','courseleader',3),('Oluf','MÃ¥ne','lun031','courseleader',4),('Ulrikke','Viggosen','sol501','courseleader',5),('Vera','Qwist','ida246','admin',6),('Henriette','Farma','ooo000','courseleader',7);
 /*!40000 ALTER TABLE `Persons` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-16 13:47:35
+-- Dump completed on 2022-05-19 10:22:35

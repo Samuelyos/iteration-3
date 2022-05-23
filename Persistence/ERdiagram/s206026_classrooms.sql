@@ -1,6 +1,4 @@
-CREATE DATABASE  IF NOT EXISTS `s206026` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `s206026`;
--- MySQL dump 10.13  Distrib 8.0.28, for macos11 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
 --
 -- Host: mysql-db.caprover.diplomportal.dk    Database: s206026
 -- ------------------------------------------------------
@@ -41,7 +39,7 @@ CREATE TABLE `classrooms` (
 
 LOCK TABLES `classrooms` WRITE;
 /*!40000 ALTER TABLE `classrooms` DISABLE KEYS */;
-INSERT INTO `classrooms` VALUES ('Panum','1.','Einer',420,'Blegdamsvej 3B, 2200 KÃ¸benhavn',1),('Panum','-1','31.35.2',30,'Blegdamsvej 3B, 2200 KÃ¸benhavn',2),('HCÃ˜','1','A106',25,'Universitetsparken 5, 2100 KÃ¸benhavn',3),('HCÃ˜','1','A111',25,'Universitetsparken 5, 2100 KÃ¸benhavn',4),('HCÃ˜','1','A104',25,'Universitetsparken 5, 2100 KÃ¸benhavn',5);
+INSERT INTO `classrooms` VALUES ('Panum','1.','Einer',420,'Blegdamsvej 3B, 2200 KÃƒÂ¸benhavn',1),('Panum','-1','31.35.2',30,'Blegdamsvej 3B, 2200 KÃƒÂ¸benhavn',2),('HCÃƒËœ','1','A106',25,'Universitetsparken 5, 2100 KÃƒÂ¸benhavn',3),('HCÃƒËœ','1','A111',25,'Universitetsparken 5, 2100 KÃƒÂ¸benhavn',4),('HCÃƒËœ','1','A104',25,'Universitetsparken 5, 2100 KÃƒÂ¸benhavn',5);
 /*!40000 ALTER TABLE `classrooms` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-16 13:47:32
+-- Dump completed on 2022-05-19 10:22:37

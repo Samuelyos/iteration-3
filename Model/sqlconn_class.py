@@ -30,12 +30,16 @@ class SQLconn:
 
     def create_all_tables(self):
         """Bruger den tidligere metode til at oprette alle tabellerne"""
-        self.create_tables('../Persistence/createTablesSQL/s206026_admin.sql')
-        self.create_tables('../Persistence/createTablesSQL/s206026_admincheck.sql')
-        self.create_tables('../Persistence/createTablesSQL/s206026_classrooms.sql')
-        self.create_tables('../Persistence/createTablesSQL/s206026_courseLeader.sql')
-        self.create_tables('../Persistence/createTablesSQL/s206026_courses.sql')
-        self.create_tables('../Persistence/createTablesSQL/s206026_lectures.sql')
+        self.create_tables('../Persistence/ERdiagram/s206026_admin.sql')
+        self.create_tables('../Persistence/ERdiagram/s206026_admincheck.sql')
+        self.create_tables('../Persistence/ERdiagram/s206026_classrooms.sql')
+        self.create_tables('../Persistence/ERdiagram/s206026_courseLeader.sql')
+        self.create_tables('../Persistence/ERdiagram/s206026_courses.sql')
+        self.create_tables('../Persistence/ERdiagram/s206026_lectures.sql')
+        self.create_tables('../Persistence/ERdiagram/s206026_Persons.sql')
+        self.create_tables('../Persistence/ERdiagram/s206026_Login.sql')
+        self.create_tables('../Persistence/ERdiagram/s206026_admin_has_admincheck.sql')
+
         print('All tables created')
 
     def create_employees(self):
@@ -55,6 +59,10 @@ class SQLconn:
             if i.get_role() == "admin":
                 Login((Admin(i.get_name(), i.get_lastname(), i.get_employeeID())), "password")
 
-db = SQLconn()
+
+
+#db = SQLconn()
 #db.create_all_tables()
-db.create_employees()
+#db.create_employees()
+
+#INSERT INTO `admincheck` VALUES (100,'Pathology.SAU','Ejner Aud.','2022-05-02','00:00','00:00',NULL,154),(100,'Pathology.SAU','Ejner Aud.','2022-05-02','00:00','00:00',NULL,155),(100,'Pathology.SAU','Ejner Aud.','2022-05-02','00:00','00:00',NULL,156),(100,'Pathology.SAU','Ejner Aud.','2022-05-02','00:00','00:00',NULL,158),(100,'Pathology.SAU','Ejner Aud.','2022-05-02','00:00','00:00',NULL,160),(100,'Pathology.SAU','Ejner Aud.','2022-05-02','00:00','00:00',NULL,162),(100,'Pathology.SAU','Ejner Aud.','2022-05-02','00:00','00:00',NULL,164),(103,'SSKS','DTUB-X2.70','2022-05-02','16:00','18:00',NULL,165);
