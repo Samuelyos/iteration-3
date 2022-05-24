@@ -2,7 +2,8 @@ import unittest
 
 from Model.sqlconn_class import SQLconn
 from Model.login_class import Login
-
+from Test.test_Validator import *
+from Test.Validator import *
 
 # Test scenarie: Dummy data oprettes, og nogle requests bliver lavet og sendt til admincheck, nogle bliver accepteret
 # og andre bliver afvist. De forskellige dummy-requests kommer til at have forskellige længder og datatyper for at teste.

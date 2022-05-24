@@ -26,3 +26,11 @@ class Login:
     def set_userTag(self, new_userTag): self.__userTag = new_userTag
 
     def get_userTag(self): return self.__userTag
+
+    def change_password(self, old_password, new_password):
+        """Ændr password"""
+        if old_password == self.get_password():
+            self.set_password(new_password)
+            return print('Pass is changed')
+        else:
+            print('Please enter your current password')

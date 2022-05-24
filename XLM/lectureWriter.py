@@ -9,12 +9,12 @@ class lectureWriter:
     def __init__(self, l: lecture) -> None:
         print("Writing root nodes")
         self.__root__ = ET.ElementTree("lecture_class")
-        self.__root__.set("courseID", l.getcourseID())
-        self.__root__.set("course", l.getcourse())
-        self.__root__.set("date", l.getdate())
-        self.__root__.set("time_from", l.gettime_from())
-        self.__root__.set("time_until", l.gettime_until())
-        self.__root__.set("zoom", l.getzoom())
+        self.__root__.set("courseID", l.get_courseID())
+        self.__root__.set("course", l.get_course())
+        self.__root__.set("date", l.get_date())
+        self.__root__.set("time_from", l.get_time_from())
+        self.__root__.set("time_until", l.get_time_until())
+        self.__root__.set("zoom", l.get_zoom())
         self.__available__ = ET.SubElement(self.__root__, "Available")
         for course in l.getAvailable():
             ET.SubElement(self.__available__, "course", {'name': course, 'room': str(l.getAvailable()[course])})

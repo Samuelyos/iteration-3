@@ -36,6 +36,10 @@ class lecture:
 
     def set_time_until(self, new_time_until): self.__time_until = new_time_until
 
+    def get_zoom(self): return self.__zoom
+
+    def set_zoom(self, new_zoom): self.__time_until = new_zoom
+
     # Hvordan vores objekter bliver repræsenteret som string.
     def __str__(self):
         return f"Course: {self.__course}\nat {self.__room} on {self.__date}\nfrom {self.__time_from} until" \
