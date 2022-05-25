@@ -19,13 +19,13 @@
      <rect>
       <x>60</x>
       <y>80</y>
-      <width>131</width>
+      <width>371</width>
       <height>41</height>
      </rect>
     </property>
     <item>
      <property name="text">
-      <string>March 2022</string>
+      <string>Choose Course from list</string>
      </property>
      <property name="font">
       <font>
@@ -38,8 +38,8 @@
    <widget class="QComboBox" name="studyCombo">
     <property name="geometry">
      <rect>
-      <x>210</x>
-      <y>100</y>
+      <x>460</x>
+      <y>90</y>
       <width>129</width>
       <height>22</height>
      </rect>

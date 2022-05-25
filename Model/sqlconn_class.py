@@ -61,8 +61,8 @@ class SQLconn:
 
 
 
-#db = SQLconn()
-#db.create_all_tables()
+db = SQLconn()
+db.create_all_tables()
 #db.create_employees()
 
 #INSERT INTO `admincheck` VALUES (100,'Pathology.SAU','Ejner Aud.','2022-05-02','00:00','00:00',NULL,154),(100,'Pathology.SAU','Ejner Aud.','2022-05-02','00:00','00:00',NULL,155),(100,'Pathology.SAU','Ejner Aud.','2022-05-02','00:00','00:00',NULL,156),(100,'Pathology.SAU','Ejner Aud.','2022-05-02','00:00','00:00',NULL,158),(100,'Pathology.SAU','Ejner Aud.','2022-05-02','00:00','00:00',NULL,160),(100,'Pathology.SAU','Ejner Aud.','2022-05-02','00:00','00:00',NULL,162),(100,'Pathology.SAU','Ejner Aud.','2022-05-02','00:00','00:00',NULL,164),(103,'SSKS','DTUB-X2.70','2022-05-02','16:00','18:00',NULL,165);

@@ -1,3 +1,5 @@
+from Test.Validator import *
+
 
 class lecture:
     """Klasse for hvert enkelt lektion, indeholder alt information relevant til booking"""
@@ -9,6 +11,14 @@ class lecture:
         self.__time_from = time_from
         self.__time_until = time_until
         self.__zoom = zoom
+
+        assert validate_couseID(self.__courseID)
+        assert validate_course(self.__course)
+        assert validate_room(self.__room)
+        assert  validate_date(self.__date)
+        assert validate_timefrom(self.__time_from)
+        assert validate_timeuntil(self.__time_until)
+        assert validate_zoom(self.__zoom)
 
         assert course != "No Lecture imported"
 

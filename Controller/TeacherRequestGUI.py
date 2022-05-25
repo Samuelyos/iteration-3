@@ -19,7 +19,7 @@ class TeacherRequestGUI(QtWidgets.QDialog):
         self.db = SQLconn()
         self.db.mycursor.execute("SELECT * FROM lectures")
         self.databaseLectures = self.db.mycursor.fetchall()
-
+        print(self.databaseLectures)
         self.lectureList = []
         for lec in range(len(self.databaseLectures)):
             self.lectureList.append(

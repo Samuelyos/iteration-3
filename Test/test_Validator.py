@@ -2,64 +2,64 @@ import Validator
 
 
 def test_validate_course_id_good():
-    assert Validator.validate_couseID("123") == True
+    assert Validator.validate_couseID("123")
 
 
-def test_validate_course_id_to_long():
-    assert Validator.validate_couseID("1234") == False
+def test_validate_course_id_too_long():
+    assert not Validator.validate_couseID("1234")
 
 
 def test_validate_course_id_not_numbers():
-    assert Validator.validate_couseID("entotrefire") == False
+    assert not Validator.validate_couseID("entotrefire")
 
 
 def test_validate_course_good():
-    assert Validator.validate_course("Systemudvikling") == True
+    assert Validator.validate_course("Systemudvikling")
 
 
-def test_validate_course_to_short():
-    assert Validator.validate_course("Sund") == False
+def test_validate_course_too_short():
+    assert not Validator.validate_course("Sund")
 
 
-def test_validate_timefrome_is_to_long():
-    assert Validator.validate_timefrome("123456") == False
+def test_validate_timefrome_is_too_long():
+    assert not Validator.validate_timefrome("123456")
 
 
 def test_validate_timefrome_is_not_numbers():
-    assert Validator.validate_timefrome("hello") == False
+    assert not Validator.validate_timefrome("hello")
 
 
 def test_validate_timefrom_not_contain_sign():
-    assert Validator.validate_timefrome("1000") == False
+    assert not Validator.validate_timefrome("1000")
 
 
 def test_validate_timefrom_is_good():
-    assert Validator.validate_timefrome("10:00") == True
+    assert Validator.validate_timefrome("10:00")
 
 
-def test_validate_timeuntil_is_to_long():
-    assert Validator.validate_timeuntil("98765") == False
+def test_validate_timeuntil_is_too_long():
+    assert not Validator.validate_timeuntil("98765")
 
 
 def test_validate_timeuntil_is_not_numbers():
-    assert Validator.validate_timeuntil("world") == False
+    assert not Validator.validate_timeuntil("world")
 
 
 def test_validate_timeuntil_not_cotain_sign():
-    assert Validator.validate_timeuntil("1300") == False
+    assert not Validator.validate_timeuntil("1300")
 
 
 def test_validate_timeuntil_is_good():
-    assert Validator.validate_timeuntil("13:00") == True
+    assert Validator.validate_timeuntil("13:00")
 
 
-def test_validate_zoom_is_to_long():
-    assert Validator.validate_zoom("234") == False
+def test_validate_zoom_is_too_long():
+    assert not Validator.validate_zoom("234")
 
 
 def test_validate_zoom_is_not_number():
-    assert Validator.validate_zoom("four") == False
+    assert not Validator.validate_zoom("four")
 
 
 def test_validate_zoom_is_good():
-    assert Validator.validate_zoom("0") == True
+    assert Validator.validate_zoom("0")
