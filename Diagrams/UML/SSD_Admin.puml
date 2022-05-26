@@ -1,0 +1,46 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor Admin as Foo
+collections sKUma as Foo1
+database InternServer as Foo2
+database EksternServer as Foo3
+actor Kursusleder as Foo4
+
+
+Foo -> Foo1 : Admodning om login
+activate Foo
+activate Foo1
+Foo1 -> Foo3 : Besked om login
+activate Foo3
+Foo3 --> Foo1 : Vertificering af login
+deactivate Foo3
+
+alt godkender anmodning
+    Foo -> Foo1 : Vil se anmodninger
+    Foo1 --> Foo : Viser anmodninger om ændringer
+    Foo -> Foo1 : Accepterer anmodninger
+
+    Foo1 -> Foo2 : Sender til opdatering i serveren'
+    activate Foo2
+    Foo2 --> Foo1 : Opdaterer skema i sKUma
+
+    Foo1 -> Foo4 : Besked til kursusleder om accept af anmoning
+    activate Foo4
+else afviser anmondning
+    Foo -> Foo1 : Vil se anmodninger
+    Foo1 --> Foo : Viser anmodninger om ændringer
+    Foo -> Foo1 : Afviser anmodninger
+    deactivate Foo
+    Foo1 -> Foo2 : Sender til opdatering i serveren
+
+    Foo2 --> Foo1 : Opdaterer skema i sKUma
+    deactivate Foo2
+    Foo1 -> Foo4 : Besked til kursusleder om afvisning af anmoning
+    deactivate Foo4
+    deactivate Foo1
+    end
+
+@enduml

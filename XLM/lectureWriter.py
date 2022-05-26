@@ -8,10 +8,11 @@ from Model.lecture_class import lecture
 
 class lectureWriter:
     def __init__(self, l: lecture) -> None:
-        print("Writing root nodes")
+
         self.__root__ = ET.Element("lecture_class")
         self.__root__.set("courseID", l.get_courseID())
         self.__root__.set("course", l.get_course())
+        self.__root__.set("room", l.get_room())
         self.__root__.set("date", l.get_date())
         self.__root__.set("time_from", l.get_time_from())
         self.__root__.set("time_until", l.get_time_until())
@@ -23,8 +24,7 @@ class lectureWriter:
 
     def save(self) -> None:
         tree = ET.ElementTree(self.__root__)
-        print(tree)
-        tree.write("lecturedata.xml")
+        tree.write("../XLM/lecturedata.xml")
 
 
 def prettify(elem):

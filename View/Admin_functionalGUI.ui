@@ -358,8 +358,20 @@
      <height>22</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuXML">
+    <property name="title">
+     <string>XML</string>
+    </property>
+    <addaction name="actionView_XML_page"/>
+   </widget>
+   <addaction name="menuXML"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionView_XML_page">
+   <property name="text">
+    <string>View XML page</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

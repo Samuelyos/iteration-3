@@ -50,7 +50,7 @@ class lecture:
 
     def get_zoom(self): return self.__zoom
 
-    def set_zoom(self, new_zoom): self.__time_until = new_zoom
+    def set_zoom(self, new_zoom): self.__zoom = new_zoom
 
     # Hvordan vores objekter bliver repræsenteret som string.
     def __str__(self):

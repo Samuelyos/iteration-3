@@ -7,8 +7,9 @@ from Model.lecture_class import lecture
 class lectureReader:
     __file_name__ = 'lecture_class2.xml'
 
-    def __init__(self) -> None:
+    def __init__(self):
         full_file = os.path.abspath(os.path.join('data', self.__file_name__))
+        print(str(full_file))
         dom = ElementTree.parse(full_file)
 
         root = dom.getroot()
@@ -20,7 +21,7 @@ class lectureReader:
         time_until = root.attrib['time_until']
         zoom = root.attrib['zoom']
 
-        print("New lecture in ", course)
+        print("New lecture in", course)
 
         self.__lecture__ = lecture(courseID, course, room, date, time_from, time_until, zoom)
 
