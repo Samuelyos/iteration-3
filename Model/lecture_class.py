@@ -1,5 +1,7 @@
+from __future__ import annotations
+from typing import List, Dict
+from xmlrpc.client import Boolean
 from Test.Validator import *
-
 
 class lecture:
     """Klasse for hvert enkelt lektion, indeholder alt information relevant til booking"""
@@ -54,3 +56,24 @@ class lecture:
     def __str__(self):
         return f"Course: {self.__course}\nat {self.__room} on {self.__date}\nfrom {self.__time_from} until" \
                f" {self.__time_until}"
+
+    def printout(self) -> None:
+        self.__str__
+
+    def erase(self) -> None:
+        self.__courseID = ' '
+        self.__course = ' '
+        self.__room = ' '
+        self.__date = ' '
+        self.__time_from = ' '
+        self.__time_until = ' '
+        self.__zoom = ' '
+
+    def update(self, l: lecture) -> None:
+        self.__courseID = self.get_courseID()
+        self.__course = self.get_course()
+        self.__room = self.get_room()
+        self.__date = self.get_date()
+        self.__time_from = self.get_time_from()
+        self.__time_until = self.get_time_until()
+        self.__zoom = self.get_zoom()

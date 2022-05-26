@@ -1,3 +1,4 @@
+from logging import root
 import os
 from xml.etree import ElementTree
 from Model.lecture_class import lecture
@@ -11,25 +12,17 @@ class lectureReader:
         dom = ElementTree.parse(full_file)
 
         root = dom.getroot()
-        self.__courseID__ = root.attrib['courseID']
-        self.__course__ = root.attrib['course']
-        self.__room__ = root.attrib['room']
-        self.__date__ = root.attrib['date']
-        self.__time_from__ = root.attrib['time_from']
-        self.__time_until__ = root.attrib['time_until']
-        self.__zoom__ = root.attrib['zoom']
-        course = {}
-        availiable = {}
+        courseID = root.attrib['courseID']
+        course = root.attrib['course']
+        room = root.attrib['room']
+        date = root.attrib['date']
+        time_from = root.attrib['time_from']
+        time_until = root.attrib['time_until']
+        zoom = root.attrib['zoom']
 
-        print("New lecture_class in ", course)
-        for course in root.iter("room"):
-            room_name = course.attrib['course']
-            print("class was avalible", room_name)
-            room_course = course.attrib['course']
-            availiable[room_name] = room_course
-            course = [room_name] = "complete me"
-        self.__lecture__ = lecture(self.__courseID__, self.__course__, self.__room__, self.__date__, self.__time_from__,
-                                   self.__time_until__, self.__zoom__)
+        print("New lecture in ", course)
+
+        self.__lecture__ = lecture(courseID, course, room, date, time_from, time_until, zoom)
 
     def getlecture_class(self) -> lecture:
         return self.__lecture__
