@@ -32,7 +32,7 @@ CREATE TABLE `admincheck` (
   `zoom` tinyint(1) DEFAULT NULL,
   `reqID` mediumint NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`reqID`)
-) ENGINE=InnoDB AUTO_INCREMENT=166 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=174 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +41,7 @@ CREATE TABLE `admincheck` (
 
 LOCK TABLES `admincheck` WRITE;
 /*!40000 ALTER TABLE `admincheck` DISABLE KEYS */;
-INSERT INTO `admincheck` VALUES (100,'Pathology.SAU','Ejner Aud.','2022-05-02','00:00','00:00',NULL,154),(100,'Pathology.SAU','Ejner Aud.','2022-05-02','00:00','00:00',NULL,155),(100,'Pathology.SAU','Ejner Aud.','2022-05-02','00:00','00:00',NULL,156),(100,'Pathology.SAU','Ejner Aud.','2022-05-02','00:00','00:00',NULL,158),(100,'Pathology.SAU','Ejner Aud.','2022-05-02','00:00','00:00',NULL,160),(100,'Pathology.SAU','Ejner Aud.','2022-05-02','00:00','00:00',NULL,162),(100,'Pathology.SAU','Ejner Aud.','2022-05-02','00:00','00:00',NULL,164),(103,'SSKS','DTUB-X2.70','2022-05-02','16:00','18:00',NULL,165);
+INSERT INTO `admincheck` VALUES (100,'Pathology.SAU','Jerne Aud.','2022-05-02','10:00','14:00',NULL,168),(100,'Pathology.SAU','Ejner Aud.','2022-05-02','12:00','16:00',NULL,169),(101,'System dev.ex','HCO-A111','2022-05-02','12:00','16:00',NULL,170),(102,'System dev.cl','Lille UP','2022-05-02','15:00','17:00',NULL,171),(103,'SSKS','DTUB-X2.70','2022-05-21','15:00','17:00',NULL,172),(104,'Pathology.caf','Panum 21.2.26','2022-05-21','09:00','13:00',NULL,173);
 /*!40000 ALTER TABLE `admincheck` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-19 10:22:36
+-- Dump completed on 2022-05-26  8:35:47

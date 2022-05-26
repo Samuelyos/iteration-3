@@ -39,7 +39,7 @@ CREATE TABLE `classrooms` (
 
 LOCK TABLES `classrooms` WRITE;
 /*!40000 ALTER TABLE `classrooms` DISABLE KEYS */;
-INSERT INTO `classrooms` VALUES ('Panum','1.','Einer',420,'Blegdamsvej 3B, 2200 KÃƒÂ¸benhavn',1),('Panum','-1','31.35.2',30,'Blegdamsvej 3B, 2200 KÃƒÂ¸benhavn',2),('HCÃƒËœ','1','A106',25,'Universitetsparken 5, 2100 KÃƒÂ¸benhavn',3),('HCÃƒËœ','1','A111',25,'Universitetsparken 5, 2100 KÃƒÂ¸benhavn',4),('HCÃƒËœ','1','A104',25,'Universitetsparken 5, 2100 KÃƒÂ¸benhavn',5);
+INSERT INTO `classrooms` VALUES ('Panum','1.','Einer',420,'Blegdamsvej 3B, 2200 KÃƒÆ’Ã‚Â¸benhavn',1),('Panum','-1','31.35.2',30,'Blegdamsvej 3B, 2200 KÃƒÆ’Ã‚Â¸benhavn',2),('HCÃƒÆ’Ã‹Å“','1','A106',25,'Universitetsparken 5, 2100 KÃƒÆ’Ã‚Â¸benhavn',3),('HCÃƒÆ’Ã‹Å“','1','A111',25,'Universitetsparken 5, 2100 KÃƒÆ’Ã‚Â¸benhavn',4),('HCÃƒÆ’Ã‹Å“','1','A104',25,'Universitetsparken 5, 2100 KÃƒÆ’Ã‚Â¸benhavn',5);
 /*!40000 ALTER TABLE `classrooms` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-19 10:22:37
+-- Dump completed on 2022-05-26  8:35:48

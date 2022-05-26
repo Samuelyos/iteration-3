@@ -166,7 +166,6 @@ class AdminRequestGUI(QtWidgets.QMainWindow):
             # SQL update statement where CourseID = midlertidigvariabel.get_courseID
             update_sql = f"UPDATE lectures SET room = '{update_room}', date = '{update_date}', timefrom = '{update_timeFrom}', timeuntil = '{update_timeUntil}' WHERE courseID = '{update_courseID}'"
             self.db.mycursor.execute(update_sql)
-            print(update_sql)
             self.db.mydb.commit()
             print(self.db.mycursor.rowcount, "Request accepted, database is updated")
 

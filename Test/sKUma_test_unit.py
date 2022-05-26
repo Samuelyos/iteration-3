@@ -49,19 +49,12 @@ class database_test(unittest.TestCase):
 
 
     def tearDown(self) -> None:
+        self.db = SQLconn()
         self.db.mycursor.execute("delete from admincheck WHERE courseID = 1000")
         self.db.mycursor.execute("delete from admincheck WHERE courseID = 1001")
         self.db.mycursor.execute("delete from lectures WHERE courseID = 1000")
         self.db.mycursor.execute("delete from lectures WHERE courseID = 1001")
         self.db.mydb.commit()
-        self.db.mycursor.execute("SELECT * FROM lectures")
-        dblecture = self.db.mycursor.fetchall()
-        assert (dblecture[-1][-1] != 1001)
-        assert (dblecture[-1][-2] != 1000)
-        self.db.mycursor.execute("SELECT * FROM admincheck")
-        dbrequest = self.db.mycursor.fetchall()
-        assert (dbrequest[-1][-1] != 1001)
-        assert (dbrequest[-1][-2] != 1000)
         print('Dummy data deleted')
 
 
