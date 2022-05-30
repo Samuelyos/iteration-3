@@ -337,16 +337,16 @@ background-color: rgb(174, 185, 255);</string>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QPushButton" name="writeXLM">
+     <widget class="QPushButton" name="writeXML">
       <property name="text">
-       <string>Write as XLM</string>
+       <string>Write as XML</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="importXLM">
+     <widget class="QPushButton" name="importXML">
       <property name="text">
-       <string>Import XLM</string>
+       <string>Import XML</string>
       </property>
      </widget>
     </item>

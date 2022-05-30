@@ -1,8 +1,8 @@
 from PyQt6 import QtWidgets, uic
 from Model.lecture_class import lecture
 from Model.sqlconn_class import SQLconn
-from XLM.lectureWriter import lectureWriter
-from XLM.lectureReader import lectureReader
+from XML.lectureWriter import lectureWriter
+from XML.lectureReader import lectureReader
 
 # Loop der tager alle rækker i databasen over lektioner, og putter dem ind på en liste
 
@@ -17,8 +17,8 @@ class TeacherRequestGUI(QtWidgets.QDialog):
         self.buttonBox.clicked.connect(self.ok_button_pressed)
         self.pushButton.clicked.connect(self.push_button_pressed)
         self.addPush.clicked.connect(self.addPush_pressed)
-        self.importXLM.clicked.connect(self.push_importXLM)
-        self.writeXLM.clicked.connect(self.push_writeXLM)
+        self.importXML.clicked.connect(self.push_importXML)
+        self.writeXML.clicked.connect(self.push_writeXML)
 
         self.db = SQLconn()
         self.db.mycursor.execute("SELECT * FROM lectures")
@@ -83,7 +83,7 @@ class TeacherRequestGUI(QtWidgets.QDialog):
             self.db.mydb.commit()
             print(self.db.mycursor.rowcount, "record inserted.")
 
-    def push_writeXLM(self):
+    def push_writeXML(self):
 
         # Når knappen "import" bliver trykket på, kaldes følgende linjer. Teksten i felterne bliver udskiftet med en lektion
         chosenLecture = self.comboBox.currentText()
@@ -95,7 +95,7 @@ class TeacherRequestGUI(QtWidgets.QDialog):
             if chosenLecture == self.lectureList[i].get_course():
                 exportLecture = self.lectureList[i]
 
-        # XLM kan kun tage strings som argumenter, derfor skal de attributter der ikke er strings først konverteres
+        # XML kan kun tage strings som argumenter, derfor skal de attributter der ikke er strings først konverteres
         exportLecture.set_courseID(str(exportLecture.get_courseID()))
         exportLecture.set_date(str(exportLecture.get_date()))
         exportLecture.set_zoom(str(exportLecture.get_zoom()))
@@ -105,7 +105,7 @@ class TeacherRequestGUI(QtWidgets.QDialog):
         print('lecturedata.xml is updated with the chosen lecture!')
 
 
-    def push_importXLM(self):
+    def push_importXML(self):
 
         importLecture = lectureReader().getlecture_class()
         insertStatement = f"INSERT INTO lectures (courseID, course, room, `date`, timefrom, timeuntil) VALUES ('{importLecture.get_courseID()}','{importLecture.get_course()}', '{importLecture.get_room()}', '{importLecture.get_date()}','{importLecture.get_time_from()}', '{importLecture.get_time_until()}')"

@@ -1,4 +1,3 @@
-from logging import root
 import os
 from xml.etree import ElementTree
 from Model.lecture_class import lecture

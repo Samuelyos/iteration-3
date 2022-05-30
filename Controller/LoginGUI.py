@@ -2,6 +2,10 @@ from PyQt6 import QtWidgets, uic
 from Controller.AdminRequestGUI import AdminRequestGUI
 from Controller.TeacherRequestGUI import TeacherRequestGUI
 from Model.login_class import Login
+from Model.sqlconn_class import SQLconn
+
+db = SQLconn()
+db.create_employees()
 
 class LoginGUI(QtWidgets.QDialog):
     """Klasse for selve ændring af lektioner GUI"""

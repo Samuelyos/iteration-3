@@ -1,5 +1,4 @@
-import os
-from xml.etree.ElementTree import ElementTree, tostring
+from xml.etree.ElementTree import tostring
 import xml.etree.cElementTree as ET
 from xml.dom import minidom
 
@@ -17,14 +16,10 @@ class lectureWriter:
         self.__root__.set("time_from", l.get_time_from())
         self.__root__.set("time_until", l.get_time_until())
         self.__root__.set("zoom", l.get_zoom())
-        #self.__available__ = ET.SubElement(self.__root__, "Available")
-        #for course in l.getAvailable():
-        #    ET.SubElement(self.__available__, "course", {'name': course, 'room': str(l.getAvailable()[course])})
-        #    print(tostring(self.__root__))
 
     def save(self) -> None:
         tree = ET.ElementTree(self.__root__)
-        tree.write("../XLM/lecturedata.xml")
+        tree.write("../XML/lecturedata.xml")
 
 
 def prettify(elem):
