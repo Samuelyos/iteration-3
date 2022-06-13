@@ -20,6 +20,7 @@ class LoginGUI(QtWidgets.QDialog):
         self.show()
 
     def Login_button_pressed(self):
+        """Tjekker om Login er okay, og tjekker rolle, så den korrekte GUI åbnes"""
 
         self.written_username = self.usernameLabel.text()
         self.written_password = self.passwordLabel.text()
@@ -57,4 +58,5 @@ class LoginGUI(QtWidgets.QDialog):
                 self.wrongLabel.setText(temp_label)
 
     def Exit_button_pressed(self):
+        """Lukke GUI vinduet"""
         self.close()

@@ -86,6 +86,7 @@ class TeacherRequestGUI(QtWidgets.QDialog):
             print(self.db.mycursor.rowcount, "record inserted.")
 
     def push_writeXML(self):
+        """Tager den valgte importerede lektion, og skriver den som XML-fil"""
 
         # Når knappen "import" bliver trykket på, kaldes følgende linjer. Teksten i felterne bliver udskiftet med en lektion
         chosenLecture = self.comboBox.currentText()

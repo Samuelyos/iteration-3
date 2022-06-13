@@ -3,8 +3,6 @@ from XML.lectureWriter import lectureWriter
 from XML.lectureReader import lectureReader
 from Model.sqlconn_class import SQLconn
 
-
-
 def main():
 
     dbxml = SQLconn()

@@ -19,11 +19,13 @@ class FirstTimeGUI(QtWidgets.QDialog):
         self.show()
 
     def login_pressed(self):
+        """Lukker vinudet, og åbne Login GUI i stedet"""
         self.close()
         self.loginGUI = LoginGUI()
         self.loginGUI.show()
 
     def exit_pressed(self):
+        """Lukker GUI vinduet"""
         self.close()
 
 
