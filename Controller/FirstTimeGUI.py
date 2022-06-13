@@ -14,6 +14,8 @@ class FirstTimeGUI(QtWidgets.QDialog):
         self.exitpush.clicked.connect(self.exit_pressed)
         self.databasepush.clicked.connect(self.sql_pressed)
         self.login_push.clicked.connect(self.login_pressed)
+        self.databasesql = SQLconn()
+        self.i = 0
         self.show()
 
     def login_pressed(self):
@@ -24,6 +26,14 @@ class FirstTimeGUI(QtWidgets.QDialog):
     def exit_pressed(self):
         self.close()
 
+
     def sql_pressed(self):
-        db = SQLconn()
-        db.create_all_tables()
+        """Loader databaser"""
+        self.i += 1
+
+        if self.i == 1:
+            self.label_2.setText('Click again to confirm, then please wait\na few seconds, before proceeding to the login menu')
+        else:
+            self.databasesql.create_all_tables()
+
+

@@ -38,7 +38,7 @@ CREATE TABLE `Persons` (
 
 LOCK TABLES `Persons` WRITE;
 /*!40000 ALTER TABLE `Persons` DISABLE KEYS */;
-INSERT INTO `Persons` VALUES ('Hugo','Test','abc123','courseleader',1),('Henrik','Hansen','zyx999','admin',2),('Lars','Kingo','bln090','courseleader',3),('Oluf','MÃƒÂ¥ne','lun031','courseleader',4),('Ulrikke','Viggosen','sol501','courseleader',5),('Vera','Qwist','ida246','admin',6),('Henriette','Farma','ooo000','courseleader',7);
+INSERT INTO `Persons` VALUES ('Hugo','Test','abc123','courseleader',1),('Henrik','Hansen','zyx999','admin',2),('Lars','Kingo','bln090','courseleader',3),('Oluf','MÃƒÆ’Ã‚Â¥ne','lun031','courseleader',4),('Ulrikke','Viggosen','sol501','courseleader',5),('Vera','Qwist','ida246','admin',6),('Henriette','Farma','ooo000','courseleader',7);
 /*!40000 ALTER TABLE `Persons` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-26  8:35:46
+-- Dump completed on 2022-05-30 10:59:26

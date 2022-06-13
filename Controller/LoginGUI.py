@@ -4,8 +4,7 @@ from Controller.TeacherRequestGUI import TeacherRequestGUI
 from Model.login_class import Login
 from Model.sqlconn_class import SQLconn
 
-db = SQLconn()
-db.create_employees()
+
 
 class LoginGUI(QtWidgets.QDialog):
     """Klasse for selve ændring af lektioner GUI"""
@@ -13,7 +12,8 @@ class LoginGUI(QtWidgets.QDialog):
     def __init__(self):
         super(LoginGUI, self).__init__()
         uic.loadUi('../View/LoginScreen.ui', self)
-
+        self.db = SQLconn()
+        self.db.create_employees()
         self.ExitPush.clicked.connect(self.Exit_button_pressed)
         self.LoginPush.clicked.connect(self.Login_button_pressed)
         self.currentUser = None

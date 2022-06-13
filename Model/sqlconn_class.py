@@ -25,8 +25,11 @@ class SQLconn:
         sqlCommands = sqlFile.split(';')
 
         # Loop der eksekvere hver kommando, for at oprette en given tabel
-        for command in sqlCommands:
-            self.mycursor.execute(command)
+        try:
+            for command in sqlCommands:
+                self.mycursor.execute(command)
+        except mysql.connector.Error as err:
+            print("Something went wrong: {}".format(err))
 
     def create_all_tables(self):
         """Bruger den tidligere metode til at oprette alle tabellerne"""
@@ -60,9 +63,8 @@ class SQLconn:
                 Login((Admin(i.get_name(), i.get_lastname(), i.get_employeeID())), "password")
 
 
-
 #db = SQLconn()
 #db.create_all_tables()
 #db.create_employees()
-
+#
 #INSERT INTO `admincheck` VALUES (100,'Pathology.SAU','Ejner Aud.','2022-05-02','00:00','00:00',NULL,154),(100,'Pathology.SAU','Ejner Aud.','2022-05-02','00:00','00:00',NULL,155),(100,'Pathology.SAU','Ejner Aud.','2022-05-02','00:00','00:00',NULL,156),(100,'Pathology.SAU','Ejner Aud.','2022-05-02','00:00','00:00',NULL,158),(100,'Pathology.SAU','Ejner Aud.','2022-05-02','00:00','00:00',NULL,160),(100,'Pathology.SAU','Ejner Aud.','2022-05-02','00:00','00:00',NULL,162),(100,'Pathology.SAU','Ejner Aud.','2022-05-02','00:00','00:00',NULL,164),(103,'SSKS','DTUB-X2.70','2022-05-02','16:00','18:00',NULL,165);

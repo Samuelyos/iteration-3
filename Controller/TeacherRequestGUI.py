@@ -34,11 +34,12 @@ class TeacherRequestGUI(QtWidgets.QDialog):
         self.show()
 
     def push_button_pressed(self):
+        """Knappen 'Import' i GUI importere data fra én bestemt linje i databasens lectures tabel"""
 
         # Når knappen "import" bliver trykket på, kaldes følgende linjer. Teksten i felterne bliver udskiftet med en lektion
         chosenLecture = self.comboBox.currentText()
 
-        # chosenLect er en midlertidig variabel, der statisk opdaterer variablen oldLecture, afhængigt af hvad du vælger i
+        # chosenLecture er en midlertidig variabel, der statisk opdaterer variablen oldLecture, afhængigt af hvad du vælger i
         # dropdown-menuen ved siden af import
         originalLecture = None
         for i in range(len(self.lectureList)):
@@ -52,6 +53,7 @@ class TeacherRequestGUI(QtWidgets.QDialog):
         self.timeLabelS.setText(f'{originalLecture.get_time_from()}, {originalLecture.get_date()}')
         self.timeLabelE.setText(f'{originalLecture.get_time_until()}')
         self.roomLineEdit.setText(f'{originalLecture.get_room()}')
+
 
     def ok_button_pressed(self):
         """Ok knappen som lukker selve GUI"""
@@ -106,28 +108,34 @@ class TeacherRequestGUI(QtWidgets.QDialog):
 
 
     def push_importXML(self):
+        """Knappen til import XML"""
 
-        importLecture = lectureReader().getlecture_class()
-        insertStatement = f"INSERT INTO lectures (courseID, course, room, `date`, timefrom, timeuntil) VALUES ('{importLecture.get_courseID()}','{importLecture.get_course()}', '{importLecture.get_room()}', '{importLecture.get_date()}','{importLecture.get_time_from()}', '{importLecture.get_time_until()}')"
-        self.db.mycursor.execute(insertStatement)
-        self.db.mydb.commit()
-        print(self.db.mycursor.rowcount, "record inserted.")
-        self.close()
+        self.i = 0
 
-        self.db.mycursor.execute("SELECT * FROM lectures")
-        self.databaseLectures = self.db.mycursor.fetchall()
-        self.lectureList = []
-        for lec in range(len(self.databaseLectures)):
-            self.lectureList.append(
-                lecture(self.databaseLectures[lec][0], self.databaseLectures[lec][1], self.databaseLectures[lec][2],
-                        self.databaseLectures[lec][3], self.databaseLectures[lec][4], self.databaseLectures[lec][5]))
+        if self.i == 0:
+            importLecture = lectureReader().getlecture_class()
+            insertStatement = f"INSERT INTO lectures (courseID, course, room, `date`, timefrom, timeuntil) VALUES ('{importLecture.get_courseID()}','{importLecture.get_course()}', '{importLecture.get_room()}', '{importLecture.get_date()}','{importLecture.get_time_from()}', '{importLecture.get_time_until()}')"
+            self.db.mycursor.execute(insertStatement)
+            self.db.mydb.commit()
+            print(self.db.mycursor.rowcount, "record inserted.")
+            self.close()
 
-        self.comboBox.clear()
-        # Kort loop der tilføjer et item i dropdown menuen, for hvert item i listen over lektioner
-        for i in range(len(self.lectureList)):
-            self.comboBox.addItem(self.lectureList[i].get_course())
+            self.db.mycursor.execute("SELECT * FROM lectures")
+            self.databaseLectures = self.db.mycursor.fetchall()
+            self.lectureList = []
+            for lec in range(len(self.databaseLectures)):
+                self.lectureList.append(
+                    lecture(self.databaseLectures[lec][0], self.databaseLectures[lec][1], self.databaseLectures[lec][2],
+                            self.databaseLectures[lec][3], self.databaseLectures[lec][4], self.databaseLectures[lec][5]))
 
-        self.show()
+            self.comboBox.clear()
+            # Kort loop der tilføjer et item i dropdown menuen, for hvert item i listen over lektioner
+            for i in range(len(self.lectureList)):
+                self.comboBox.addItem(self.lectureList[i].get_course())
 
+            self.show()
+            self.i += 1
+        else:
+            pass
         # Kort loop der tilføjer et item i dropdown menuen, for hvert item i listen over lektioner
 

@@ -40,7 +40,7 @@ CREATE TABLE `lectures` (
 
 LOCK TABLES `lectures` WRITE;
 /*!40000 ALTER TABLE `lectures` DISABLE KEYS */;
-INSERT INTO `lectures` VALUES (100,'Pathology.SAU','Ejner Aud.','2022-05-02','00:00','00:00',0),(101,'System dev.ex','HCO-A103','2022-04-04','08:00','10:00',0),(102,'System dev.cl','HCO-A106','2022-04-04','15:00','17:00',0),(103,'SSKS','DTUB-X2.70','2022-04-07','13:00','17:00',0),(104,'Pathology.caf','Panum 21.2.26','2022-10-05','09:00','12:00',0);
+INSERT INTO `lectures` VALUES (100,'Pathology.SAU','Ejner Aud.','2022-05-02','10:00','14:00',0),(101,'System dev.ex','HCO-A103','2022-04-04','08:00','10:00',0),(102,'System dev.cl','HCO-A106','2022-04-04','15:00','17:00',0),(103,'SSKS','DTUB-X2.70','2022-04-07','13:00','17:00',0),(104,'Pathology.caf','Panum 21.2.26','2022-10-05','09:00','12:00',0);
 /*!40000 ALTER TABLE `lectures` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
